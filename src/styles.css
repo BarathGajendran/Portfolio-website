@@ -1,0 +1,412 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&display=swap");
+@import "tailwindcss" source(none);
+@import "tw-animate-css";
+@import "@fontsource-variable/inter";
+@import "@fontsource/space-grotesk/400.css";
+@import "@fontsource/space-grotesk/500.css";
+@import "@fontsource/space-grotesk/600.css";
+@import "@fontsource/space-grotesk/700.css";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+
+@source "../src";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-neon: var(--neon);
+  --color-neon-soft: var(--neon-soft);
+  --color-lime: var(--lime);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Inter Variable", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+:root {
+  --radius: 0.875rem;
+
+  /* Deep rich espresso charcoal base */
+  --background: oklch(0.14 0.01 60);
+  --foreground: oklch(0.96 0.01 80);
+  --surface: oklch(0.17 0.012 60);
+  --surface-2: oklch(0.2 0.015 60);
+
+  --card: oklch(0.17 0.012 60);
+  --card-foreground: oklch(0.96 0.01 80);
+  --popover: oklch(0.17 0.012 60);
+  --popover-foreground: oklch(0.96 0.01 80);
+
+  /* Muted Glowing Bronze & Burnt Sand accents */
+  --neon: oklch(0.72 0.08 70); /* Glowing Bronze */
+  --neon-soft: oklch(0.82 0.06 80); /* Burnt Sand */
+  --lime: oklch(0.74 0.05 140); /* Sage Green */
+
+  --primary: oklch(0.72 0.08 70);
+  --primary-foreground: oklch(0.14 0.01 60);
+  --secondary: oklch(0.82 0.06 80);
+  --secondary-foreground: oklch(0.14 0.01 60);
+  --muted: oklch(0.21 0.01 60);
+  --muted-foreground: oklch(0.68 0.01 60);
+  --accent: oklch(0.74 0.05 140);
+  --accent-foreground: oklch(0.14 0.01 60);
+  --destructive: oklch(0.65 0.24 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.26 0.01 60 / 60%);
+  --input: oklch(0.21 0.01 60 / 70%);
+  --ring: oklch(0.72 0.08 70);
+
+  /* Gradients & shadows */
+  --gradient-neon: linear-gradient(135deg, oklch(0.72 0.08 70), oklch(0.82 0.06 80));
+  --gradient-radial: radial-gradient(circle at 50% 0%, oklch(0.72 0.08 70 / 0.25), transparent 60%);
+  --gradient-hero:
+    radial-gradient(ellipse at top, oklch(0.72 0.08 70 / 0.18), transparent 50%),
+    radial-gradient(ellipse at bottom right, oklch(0.82 0.06 80 / 0.12), transparent 60%);
+  --shadow-glow: 0 0 40px oklch(0.72 0.08 70 / 0.45), 0 0 80px oklch(0.72 0.08 70 / 0.2);
+  --shadow-glow-sm: 0 0 18px oklch(0.72 0.08 70 / 0.45);
+  /* Radial glow background */
+  --body-bg:
+    radial-gradient(ellipse 80% 50% at 50% -10%, oklch(0.72 0.08 70 / 0.12), transparent),
+    radial-gradient(ellipse 60% 40% at 90% 10%, oklch(0.82 0.06 80 / 0.08), transparent);
+
+  /* Dynamic glass & spotlight variables for themes */
+  --glass-bg: oklch(0.18 0.012 60 / 0.45);
+  --glass-border: oklch(0.72 0.08 70 / 0.15);
+  --glass-strong-bg: oklch(0.16 0.012 60 / 0.7);
+  --glass-strong-border: oklch(0.72 0.08 70 / 0.2);
+  --neon-glow-color: oklch(0.72 0.08 70 / 0.45);
+  --neon-border-color: oklch(0.72 0.08 70 / 0.4);
+  --card-glow: radial-gradient(circle at center, oklch(0.72 0.08 70 / 0.12) 0%, transparent 60%);
+}
+
+.dark {
+  /* same — site is dark by default */
+  --background: oklch(0.14 0.01 60);
+  --foreground: oklch(0.96 0.01 80);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    overflow-x: hidden;
+    background-image: var(--body-bg);
+    background-attachment: fixed;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: oklch(0.14 0.01 60);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, oklch(0.72 0.08 70), oklch(0.82 0.06 80));
+    border-radius: 999px;
+  }
+
+  ::selection {
+    background: oklch(0.72 0.08 70 / 0.35);
+    color: oklch(0.96 0.01 80);
+  }
+}
+
+@utility glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    inset 0 1px 0 oklch(1 0 0 / 0.05),
+    0 10px 40px -10px oklch(0 0 0 / 0.5);
+}
+
+@utility glass-strong {
+  background: var(--glass-strong-bg);
+  backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid var(--glass-strong-border);
+}
+
+@utility neon-text {
+  background: var(--gradient-neon);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 18px var(--neon-glow-color));
+}
+
+@utility neon-border {
+  border: 1px solid var(--neon-border-color);
+  box-shadow: var(--shadow-glow-sm);
+}
+
+@utility neon-glow {
+  box-shadow: var(--shadow-glow);
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 30px oklch(0.72 0.08 70 / 0.4);
+  }
+  50% {
+    box-shadow: 0 0 60px oklch(0.72 0.08 70 / 0.7);
+  }
+}
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+@keyframes blob {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(40px, -30px) scale(1.1);
+  }
+  66% {
+    transform: translate(-30px, 20px) scale(0.95);
+  }
+}
+
+@utility animate-float {
+  animation: float-y 6s ease-in-out infinite;
+}
+@utility animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+@utility animate-blob {
+  animation: blob 18s ease-in-out infinite;
+}
+@utility animate-shimmer {
+  background: linear-gradient(90deg, transparent, oklch(1 0 0 / 0.08), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2.5s linear infinite;
+}
+
+.theme-cyber {
+  --background: oklch(0.08 0.005 240);
+  --foreground: oklch(0.95 0.01 220);
+  --surface: oklch(0.12 0.015 240);
+  --surface-2: oklch(0.16 0.02 240);
+
+  --neon: oklch(0.75 0.16 195);
+  --neon-soft: oklch(0.68 0.22 330);
+  --lime: oklch(0.85 0.12 210);
+
+  --primary: oklch(0.75 0.16 195);
+  --primary-foreground: oklch(0.08 0.005 240);
+  --secondary: oklch(0.68 0.22 330);
+  --secondary-foreground: oklch(0.08 0.005 240);
+  --muted: oklch(0.15 0.01 240);
+  --muted-foreground: oklch(0.6 0.02 240);
+  --accent: oklch(0.85 0.12 210);
+  --accent-foreground: oklch(0.08 0.005 240);
+  --border: oklch(0.75 0.16 195 / 20%);
+  --input: oklch(0.15 0.01 240 / 60%);
+  --ring: oklch(0.75 0.16 195);
+
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+
+  --gradient-neon: linear-gradient(135deg, oklch(0.75 0.16 195), oklch(0.68 0.22 330));
+  --gradient-radial: radial-gradient(
+    circle at 50% 0%,
+    oklch(0.75 0.16 195 / 0.25),
+    transparent 60%
+  );
+  --gradient-hero:
+    radial-gradient(ellipse at top, oklch(0.75 0.16 195 / 0.18), transparent 50%),
+    radial-gradient(ellipse at bottom right, oklch(0.68 0.22 330 / 0.12), transparent 60%);
+  --shadow-glow: 0 0 40px oklch(0.75 0.16 195 / 0.45), 0 0 80px oklch(0.75 0.16 195 / 0.2);
+  --shadow-glow-sm: 0 0 18px oklch(0.75 0.16 195 / 0.45);
+
+  --body-bg:
+    radial-gradient(ellipse 80% 50% at 50% -10%, oklch(0.75 0.16 195 / 0.12), transparent),
+    radial-gradient(ellipse 60% 40% at 90% 10%, oklch(0.68 0.22 330 / 0.08), transparent);
+
+  /* Cyber Theme glass, neon and card glow overrides */
+  --glass-bg: oklch(0.12 0.015 240 / 0.45);
+  --glass-border: oklch(0.75 0.16 195 / 0.15);
+  --glass-strong-bg: oklch(0.16 0.02 240 / 0.7);
+  --glass-strong-border: oklch(0.75 0.16 195 / 0.2);
+  --neon-glow-color: oklch(0.75 0.16 195 / 0.45);
+  --neon-border-color: oklch(0.75 0.16 195 / 0.4);
+  --card-glow: radial-gradient(circle at center, oklch(0.75 0.16 195 / 0.12) 0%, transparent 60%);
+}
+
+.theme-sage {
+  --background: oklch(0.12 0.015 140);
+  --foreground: oklch(0.97 0.01 100);
+  --surface: oklch(0.15 0.018 140);
+  --surface-2: oklch(0.18 0.022 140);
+
+  --neon: oklch(0.78 0.06 140);
+  --neon-soft: oklch(0.82 0.09 85);
+  --lime: oklch(0.86 0.07 100);
+
+  --primary: oklch(0.78 0.06 140);
+  --primary-foreground: oklch(0.12 0.015 140);
+  --secondary: oklch(0.82 0.09 85);
+  --secondary-foreground: oklch(0.12 0.015 140);
+  --muted: oklch(0.16 0.01 140);
+  --muted-foreground: oklch(0.65 0.01 140);
+  --accent: oklch(0.86 0.07 100);
+  --accent-foreground: oklch(0.12 0.015 140);
+  --border: oklch(0.78 0.06 140 / 20%);
+  --input: oklch(0.16 0.01 140 / 60%);
+  --ring: oklch(0.78 0.06 140);
+
+  --font-display: "Cormorant Garamond", Georgia, serif;
+
+  --gradient-neon: linear-gradient(135deg, oklch(0.78 0.06 140), oklch(0.82 0.09 85));
+  --gradient-radial: radial-gradient(
+    circle at 50% 0%,
+    oklch(0.78 0.06 140 / 0.25),
+    transparent 60%
+  );
+  --gradient-hero:
+    radial-gradient(ellipse at top, oklch(0.78 0.06 140 / 0.18), transparent 50%),
+    radial-gradient(ellipse at bottom right, oklch(0.82 0.09 85 / 0.12), transparent 60%);
+  --shadow-glow: 0 0 40px oklch(0.78 0.06 140 / 0.45), 0 0 80px oklch(0.78 0.06 140 / 0.2);
+  --shadow-glow-sm: 0 0 18px oklch(0.78 0.06 140 / 0.45);
+
+  --body-bg:
+    radial-gradient(ellipse 80% 50% at 50% -10%, oklch(0.78 0.06 140 / 0.12), transparent),
+    radial-gradient(ellipse 60% 40% at 90% 10%, oklch(0.82 0.09 85 / 0.08), transparent);
+
+  /* Sage Theme glass, neon and card glow overrides */
+  --glass-bg: oklch(0.15 0.018 140 / 0.45);
+  --glass-border: oklch(0.78 0.06 140 / 0.15);
+  --glass-strong-bg: oklch(0.18 0.022 140 / 0.7);
+  --glass-strong-border: oklch(0.78 0.06 140 / 0.2);
+  --neon-glow-color: oklch(0.78 0.06 140 / 0.45);
+  --neon-border-color: oklch(0.78 0.06 140 / 0.4);
+  --card-glow: radial-gradient(circle at center, oklch(0.78 0.06 140 / 0.12) 0%, transparent 60%);
+}
+
+.theme-amber {
+  --background: oklch(0.06 0 0);
+  --foreground: oklch(0.78 0.15 70);
+  --surface: oklch(0.09 0.01 70);
+  --surface-2: oklch(0.13 0.015 70);
+
+  --neon: oklch(0.78 0.15 70);
+  --neon-soft: oklch(0.65 0.12 70);
+  --lime: oklch(0.78 0.15 70);
+
+  --primary: oklch(0.78 0.15 70);
+  --primary-foreground: oklch(0.06 0 0);
+  --secondary: oklch(0.65 0.12 70);
+  --secondary-foreground: oklch(0.06 0 0);
+  --muted: oklch(0.1 0.01 70);
+  --muted-foreground: oklch(0.55 0.1 70);
+  --accent: oklch(0.78 0.15 70);
+  --accent-foreground: oklch(0.06 0 0);
+  --border: oklch(0.78 0.15 70 / 25%);
+  --input: oklch(0.1 0.01 70 / 60%);
+  --ring: oklch(0.78 0.15 70);
+
+  --font-display: "JetBrains Mono", monospace;
+  --font-sans: "JetBrains Mono", monospace;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --gradient-neon: linear-gradient(135deg, oklch(0.78 0.15 70), oklch(0.65 0.12 70));
+  --gradient-radial: radial-gradient(circle at 50% 0%, oklch(0.78 0.15 70 / 0.25), transparent 60%);
+  --gradient-hero:
+    radial-gradient(ellipse at top, oklch(0.78 0.15 70 / 0.18), transparent 50%),
+    radial-gradient(ellipse at bottom right, oklch(0.65 0.12 70 / 0.12), transparent 60%);
+  --shadow-glow: 0 0 40px oklch(0.78 0.15 70 / 0.45), 0 0 80px oklch(0.78 0.15 70 / 0.2);
+  --shadow-glow-sm: 0 0 18px oklch(0.78 0.15 70 / 0.45);
+
+  --body-bg:
+    radial-gradient(ellipse 80% 50% at 50% -10%, oklch(0.78 0.15 70 / 0.15), transparent),
+    radial-gradient(ellipse 60% 40% at 90% 10%, oklch(0.65 0.12 70 / 0.06), transparent);
+
+  /* Amber Theme glass, neon and card glow overrides */
+  --glass-bg: oklch(0.09 0.01 70 / 0.45);
+  --glass-border: oklch(0.78 0.15 70 / 0.15);
+  --glass-strong-bg: oklch(0.13 0.015 70 / 0.7);
+  --glass-strong-border: oklch(0.78 0.15 70 / 0.2);
+  --neon-glow-color: oklch(0.78 0.15 70 / 0.45);
+  --neon-border-color: oklch(0.78 0.15 70 / 0.4);
+  --card-glow: radial-gradient(circle at center, oklch(0.78 0.15 70 / 0.15) 0%, transparent 60%);
+}
+
+/* Custom subtle scrollbar for scroll-containers */
+.scroll-container::-webkit-scrollbar {
+  width: 4px;
+}
+.scroll-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scroll-container::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 9999px;
+}
+.scroll-container::-webkit-scrollbar-thumb:hover {
+  background: var(--color-neon-soft);
+}
+.scroll-container {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
