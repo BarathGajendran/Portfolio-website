@@ -54,13 +54,13 @@ function ResumePage() {
             <h3 className="font-display text-2xl font-semibold">Barath's Resume</h3>
 
             <div className="mt-2 flex flex-wrap justify-center gap-3">
-              <MagneticButton href="/Barath_Resume.pdf" download="Barath_Resume.pdf">
+              <MagneticButton href="/Barath_Resume.pdf?download=1" download="Barath_Resume.pdf">
                 <Download className="h-4 w-4" /> Download
               </MagneticButton>
               <a
                 href="/Barath_Resume.pdf"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-neon/40 px-6 py-3 font-display font-semibold transition hover:border-[#E0A899] hover:text-[#E0A899]"
               >
                 <Eye className="h-4 w-4" /> View PDF
