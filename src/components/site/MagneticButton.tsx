@@ -38,7 +38,7 @@ export function MagneticButton({
       ref={ref}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
-      style={{ sx: sx, y: sy }}
+      style={{ x: sx, y: sy }}
       className="inline-block"
     >
       <motion.span
