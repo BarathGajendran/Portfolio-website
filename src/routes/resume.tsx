@@ -58,10 +58,18 @@ function ResumePage() {
                 <Download className="h-4 w-4" /> Download
               </MagneticButton>
               <a
-                href="#preview"
+                href="/Barath_Resume.pdf"
+                target="_blank"
+                rel="noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-neon/40 px-6 py-3 font-display font-semibold transition hover:border-[#E0A899] hover:text-[#E0A899]"
               >
-                <Eye className="h-4 w-4" /> Preview Highlights
+                <Eye className="h-4 w-4" /> View PDF
+              </a>
+              <a
+                href="#preview"
+                className="inline-flex items-center gap-2 rounded-full border border-border/40 px-6 py-3 font-display font-semibold text-muted-foreground transition hover:border-neon/40 hover:text-foreground"
+              >
+                Highlights
               </a>
             </div>
           </motion.div>
