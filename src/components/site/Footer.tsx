@@ -5,7 +5,7 @@ const socials = [
   { Icon: Github, href: "https://github.com/BarathGajendran", label: "GitHub" },
   {
     Icon: Linkedin,
-    href: "https://www.linkedin.com/in/barath-gajendran-5532a6333",
+    href: "https://www.linkedin.com/in/barath-gajendran",
     label: "LinkedIn",
   },
   { Icon: Twitter, href: "https://x.com/barath1715", label: "Twitter" },

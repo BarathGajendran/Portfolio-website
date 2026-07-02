@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, Brain, Cpu, ChevronRight, Clock } from "lucide-react";
 import { SpotlightCard } from "../ui/SpotlightCard";
+import { formatISTClock, getDeveloperStatus } from "../../lib/developer-status";
 
 // Focus node definitions
 const FOCUS_NODES = [
@@ -41,43 +42,18 @@ export function Dashboard() {
 
   useEffect(() => {
     const updateTimeAndStatus = () => {
-      const options: Intl.DateTimeFormatOptions = {
-        timeZone: "Asia/Kolkata",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: true,
-      };
-      setTime(new Date().toLocaleTimeString("en-US", options));
+      const now = new Date();
+      const nextTime = formatISTClock(now);
+      const nextStatus = getDeveloperStatus(now);
 
-      // Calculate status based on Chennai/IST hours
-      const kolkataHour = parseInt(
-        new Date().toLocaleTimeString("en-US", {
-          timeZone: "Asia/Kolkata",
-          hour: "2-digit",
-          hour12: false,
-        }),
+      setTime((current) => (current === nextTime ? current : nextTime));
+      setStatus((current) =>
+        current.text === nextStatus.text &&
+        current.sub === nextStatus.sub &&
+        current.colorClass === nextStatus.colorClass
+          ? current
+          : nextStatus,
       );
-
-      if (kolkataHour >= 9 && kolkataHour < 18) {
-        setStatus({
-          text: "Active & Building 💻",
-          sub: "Working on client projects or shipping features.",
-          colorClass: "bg-neon shadow-[0_0_12px_var(--color-neon)]",
-        });
-      } else if (kolkataHour >= 18 && kolkataHour < 23) {
-        setStatus({
-          text: "Side Project Mode 🚀",
-          sub: "Exploring AI, open-source code, and designs.",
-          colorClass: "bg-neon-soft shadow-[0_0_12px_var(--color-neon-soft)]",
-        });
-      } else {
-        setStatus({
-          text: "Offline & Recharging 💤",
-          sub: "Sleeping or dreaming in code. Back tomorrow morning!",
-          colorClass: "bg-muted-foreground/40",
-        });
-      }
     };
 
     updateTimeAndStatus();

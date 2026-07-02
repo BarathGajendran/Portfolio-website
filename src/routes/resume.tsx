@@ -9,7 +9,7 @@ export const Route = createFileRoute("/resume")({
   head: () => ({
     meta: [
       { title: "Resume — Barath Gajendran" },
-      { name: "description", content: "Download or preview Barath Gajendran's full résumé." },
+      { name: "description", content: "Download Barath Gajendran's résumé or browse role highlights." },
       { property: "og:title", content: "Resume — Barath Gajendran" },
       { property: "og:url", content: "/resume" },
     ],
@@ -54,7 +54,7 @@ function ResumePage() {
             <h3 className="font-display text-2xl font-semibold">Barath's Resume</h3>
 
             <div className="mt-2 flex flex-wrap justify-center gap-3">
-              <MagneticButton href="/Barath_Resume.pdf" download="Barath's_Resume.pdf">
+              <MagneticButton href="/Barath_Resume.pdf" download="Barath_Resume.pdf">
                 <Download className="h-4 w-4" /> Download
               </MagneticButton>
               <a
@@ -174,21 +174,20 @@ function ResumePage() {
               <div className="space-y-4">
                 {/* Project Card 1 */}
                 <a
-                  href="https://github.com/BarathGajendran"
+                  href="https://github.com/BarathGajendran/Phish-Sentry-AI"
                   target="_blank"
                   rel="noreferrer"
                   className="block group p-4 rounded-2xl border border-border/10 bg-surface/20 hover:border-neon/30 hover:bg-surface/30 transition-all cursor-pointer"
                 >
                   <span className="font-display font-bold text-sm text-foreground block group-hover:text-neon transition-colors">
-                    Smart City Complaint Intelligence
+                    Phish Sentry AI
                   </span>
                   <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed">
-                    Built an urban complaint classification system that automatically detects and
-                    categorizes city infrastructure issues like potholes and garbage from images and
-                    text.
+                    AI-powered phishing detection system using NLP to analyze and classify suspicious
+                    emails with a React dashboard and BERT-backed classification pipeline.
                   </p>
                   <div className="mt-2.5 flex flex-wrap gap-1.5">
-                    {["YOLOv8", "BERT", "DBSCAN", "Python", "Computer Vision"].map((tag) => (
+                    {["React", "Python", "BERT", "NLP"].map((tag) => (
                       <span
                         key={tag}
                         className="font-mono text-[9px] px-1.5 py-0.5 rounded bg-surface/40 border border-border/20 text-[#E0A899]"

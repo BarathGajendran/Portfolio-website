@@ -15,6 +15,7 @@ import { Route as ResumeRouteImport } from './routes/resume'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as ProfilesRouteImport } from './routes/profiles'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as Barath_ResumeDotpdfRouteImport } from './routes/Barath_Resume[.]pdf'
 import { Route as IndexRouteImport } from './routes/index'
 
 const SkillsRoute = SkillsRouteImport.update({
@@ -47,6 +48,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Barath_ResumeDotpdfRoute = Barath_ResumeDotpdfRouteImport.update({
+  id: '/Barath_Resume.pdf',
+  path: '/Barath_Resume.pdf',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -55,6 +61,7 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/Barath_Resume.pdf': typeof Barath_ResumeDotpdfRoute
   '/contact': typeof ContactRoute
   '/profiles': typeof ProfilesRoute
   '/projects': typeof ProjectsRoute
@@ -64,6 +71,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/Barath_Resume.pdf': typeof Barath_ResumeDotpdfRoute
   '/contact': typeof ContactRoute
   '/profiles': typeof ProfilesRoute
   '/projects': typeof ProjectsRoute
@@ -74,6 +82,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/Barath_Resume.pdf': typeof Barath_ResumeDotpdfRoute
   '/contact': typeof ContactRoute
   '/profiles': typeof ProfilesRoute
   '/projects': typeof ProjectsRoute
@@ -85,6 +94,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/Barath_Resume.pdf'
     | '/contact'
     | '/profiles'
     | '/projects'
@@ -94,6 +104,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/Barath_Resume.pdf'
     | '/contact'
     | '/profiles'
     | '/projects'
@@ -103,6 +114,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/Barath_Resume.pdf'
     | '/contact'
     | '/profiles'
     | '/projects'
@@ -113,6 +125,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  Barath_ResumeDotpdfRoute: typeof Barath_ResumeDotpdfRoute
   ContactRoute: typeof ContactRoute
   ProfilesRoute: typeof ProfilesRoute
   ProjectsRoute: typeof ProjectsRoute
@@ -165,6 +178,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/Barath_Resume.pdf': {
+      id: '/Barath_Resume.pdf'
+      path: '/Barath_Resume.pdf'
+      fullPath: '/Barath_Resume.pdf'
+      preLoaderRoute: typeof Barath_ResumeDotpdfRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -177,6 +197,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  Barath_ResumeDotpdfRoute: Barath_ResumeDotpdfRoute,
   ContactRoute: ContactRoute,
   ProfilesRoute: ProfilesRoute,
   ProjectsRoute: ProjectsRoute,

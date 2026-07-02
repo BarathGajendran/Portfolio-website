@@ -39,7 +39,7 @@ const profiles = [
     name: "LinkedIn",
     handle: "@barath-gajendran",
     icon: Linkedin,
-    url: "https://www.linkedin.com/in/barath-gajendran/",
+    url: "https://www.linkedin.com/in/barath-gajendran",
     hue: "#a3e635",
   },
   {
