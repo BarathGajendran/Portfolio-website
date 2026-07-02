@@ -54,7 +54,7 @@ function ResumePage() {
             <h3 className="font-display text-2xl font-semibold">Barath's Resume</h3>
 
             <div className="mt-2 flex flex-wrap justify-center gap-3">
-              <MagneticButton href="/Barath_Resume.pdf?download=1" download="Barath_Resume.pdf">
+              <MagneticButton href="/Barath_Resume.pdf" download="Barath's_Resume.pdf">
                 <Download className="h-4 w-4" /> Download
               </MagneticButton>
               <a

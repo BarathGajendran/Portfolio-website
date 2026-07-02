@@ -83,7 +83,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Barath Gajendran — Full Stack Developer & AI Enthusiast" },
+      { title: "Barath Gajendran — Portfolio" },
       {
         name: "description",
         content:
@@ -91,7 +91,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "author", content: "Barath Gajendran" },
       { name: "theme-color", content: "#10ffb0" },
-      { property: "og:title", content: "Barath Gajendran — Full Stack Developer & AI Enthusiast" },
+      { property: "og:title", content: "Barath Gajendran — Portfolio" },
       {
         property: "og:description",
         content:
