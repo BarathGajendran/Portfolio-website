@@ -28,7 +28,7 @@ import { CountUp } from "../components/ui/CountUp";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Barath Gajendran — Full Stack Developer & AI/ML Enthusiast" },
+      { title: "Barath Gajendran — Portfolio" },
       {
         name: "description",
         content:
