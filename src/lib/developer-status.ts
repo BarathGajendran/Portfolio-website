@@ -25,7 +25,7 @@ export function getDeveloperStatus(date = new Date()): DeveloperStatus {
   if (hour >= WORK_START_HOUR && hour < WORK_END_HOUR) {
     return {
       text: "Active & Building 💻",
-      sub: "Working on client projects or shipping features.",
+      sub: "Working on projects or shipping features.",
       colorClass: "bg-neon shadow-[0_0_12px_var(--color-neon)]",
     };
   }

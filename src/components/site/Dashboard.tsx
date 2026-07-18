@@ -1,40 +1,47 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Brain, Cpu, ChevronRight, Clock } from "lucide-react";
+import { Sparkles, Clock, Coffee } from "lucide-react";
 import { SpotlightCard } from "../ui/SpotlightCard";
 import { formatISTClock, getDeveloperStatus } from "../../lib/developer-status";
 
-// Focus node definitions
-const FOCUS_NODES = [
-  {
-    id: "ai",
-    title: "AI Orchestration",
-    short: "RAG & LLM Agents",
-    desc: "Developing production-grade Retrieval-Augmented Generation (RAG) pipelines, semantic chunking mechanisms, and self-correcting multi-agent networks.",
-    icon: Brain,
-    color: "var(--color-neon)", // dynamic bronze / cyberpunk teal / sage green / amber
-  },
-  {
-    id: "ui",
-    title: "Organic Interfaces",
-    short: "Micro-interactions & UX",
-    desc: "Designing responsive, quiet luxury web experiences featuring smooth spring physics, custom canvas layouts, and premium editorial typography.",
-    icon: Sparkles,
-    color: "var(--color-lime)", // dynamic sage green / cyberpunk pink / sage green / amber
-  },
-  {
-    id: "sys",
-    title: "Distributed Backend",
-    short: "Go & High-performance APIs",
-    desc: "Structuring concurrent microservices using Go channels/goroutines and high-speed asynchronous model serving pipelines in Python FastAPI.",
-    icon: Cpu,
-    color: "var(--color-neon-soft)", // dynamic burnt sand / cyberpunk cyan / sage green / amber
-  },
-];
+interface CoffeeParticle {
+  id: number;
+  x: number;
+  y: number;
+  emoji: string;
+}
 
 export function Dashboard() {
-  // FOCUS NODES STATE
-  const [activeNode, setActiveNode] = useState<(typeof FOCUS_NODES)[number] | null>(null);
+  // COFFEE CLICKER STATE
+  const [coffeeCount, setCoffeeCount] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("coffee_count");
+      return saved ? parseInt(saved, 10) : 0;
+    }
+    return 0;
+  });
+  const [particles, setParticles] = useState<CoffeeParticle[]>([]);
+
+  const handleAddCoffee = () => {
+    const newCount = coffeeCount + 1;
+    setCoffeeCount(newCount);
+    localStorage.setItem("coffee_count", newCount.toString());
+
+    // Generate random particle velocities
+    const angle = Math.random() * Math.PI * 2;
+    const distance = 40 + Math.random() * 40;
+    const x = Math.cos(angle) * distance;
+    const y = Math.sin(angle) * distance - 20;
+
+    const emojis = ["☕", "☕", "☕", "☕", "☕", "🔥", "✨", "☕"];
+    const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+
+    setParticles((prev) => [...prev, { id: Date.now() + Math.random(), x, y, emoji }]);
+  };
+
+  const removeParticle = (id: number) => {
+    setParticles((prev) => prev.filter((p) => p.id !== id));
+  };
 
   // CLOCK & STATUS STATE
   const [time, setTime] = useState("");
@@ -63,117 +70,64 @@ export function Dashboard() {
 
   return (
     <div className="grid gap-6 md:grid-cols-2">
-      {/* CARD 1: FOCUS NODES MIND MAP */}
+      {/* CARD 1: VIRTUAL COFFEE CLICKER */}
       <SpotlightCard className="p-4 flex flex-col justify-between h-[240px] relative overflow-hidden">
-        <AnimatePresence mode="wait">
-          {!activeNode ? (
-            <motion.div
-              key="list"
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              className="flex flex-col h-full w-full overflow-hidden"
-            >
-              <div className="flex items-center justify-between border-b border-border/10 pb-2 mb-2 flex-shrink-0">
-                <div className="flex items-center gap-1.5 font-sans text-xs text-muted-foreground uppercase tracking-wider">
-                  <Brain className="h-4 w-4 text-neon animate-pulse" />
-                  <span className="font-semibold">Current Focus Areas</span>
-                </div>
-                <span className="font-mono text-[10px] text-muted-foreground/60 uppercase">
-                  Mind Map
-                </span>
-              </div>
+        <div className="flex items-center justify-between border-b border-border/10 pb-2 mb-2 flex-shrink-0">
+          <div className="flex items-center gap-1.5 font-sans text-xs text-muted-foreground uppercase tracking-wider">
+            <Coffee className="h-4 w-4 text-neon-soft animate-pulse" />
+            <span className="font-semibold">Virtual Fuel</span>
+          </div>
+          <span className="font-mono text-[10px] text-muted-foreground/60 uppercase">
+            Interactive
+          </span>
+        </div>
 
-              {/* Node list - Scrollable container */}
-              <div className="flex flex-col gap-2 overflow-y-auto flex-1 pr-1 scroll-container">
-                <p className="text-xs text-muted-foreground leading-relaxed mb-2 font-sans">
-                  These are the core engineering segments I am actively scaling. Click a node to
-                  inspect details:
-                </p>
-                {FOCUS_NODES.map((node, i) => {
-                  const NodeIcon = node.icon;
-                  return (
-                    <motion.button
-                      key={node.id}
-                      onClick={() => setActiveNode(node)}
-                      className="flex items-center justify-between p-2 rounded-xl border border-border/20 bg-surface/20 hover:border-neon-soft/50 hover:bg-surface-2/40 text-left transition-all group/node cursor-pointer focus:outline-none"
-                      data-cursor-text={`OPEN ${node.id.toUpperCase()}`}
-                    >
-                      <div className="flex items-center gap-2.5">
-                        <div
-                          className="p-1.5 rounded-lg border flex items-center justify-center"
-                          style={{
-                            borderColor: `${node.color}35`,
-                            color: node.color,
-                            backgroundColor: `${node.color}08`,
-                          }}
-                        >
-                          <NodeIcon className="h-4 w-4" />
-                        </div>
-                        <div>
-                          <span className="text-xs font-semibold text-foreground group-hover/node:text-neon-soft transition-colors font-sans block">
-                            {node.title}
-                          </span>
-                          <p className="text-[10px] text-muted-foreground font-mono">
-                            {node.short}
-                          </p>
-                        </div>
-                      </div>
-                      <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/40 group-hover/node:text-neon-soft transition-colors" />
-                    </motion.button>
-                  );
-                })}
-              </div>
-            </motion.div>
-          ) : (
-            <motion.div
-              key="detail"
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              className="flex flex-col h-full w-full overflow-hidden"
-            >
-              <div className="flex items-center justify-between border-b border-border/10 pb-2 mb-2 flex-shrink-0">
-                <div className="flex items-center gap-1.5 font-sans text-xs text-muted-foreground uppercase tracking-wider">
-                  <activeNode.icon
-                    className="h-4 w-4 animate-pulse"
-                    style={{ color: activeNode.color }}
-                  />
-                  <span className="font-semibold">Focus Segment</span>
-                </div>
-                <button
-                  onClick={() => setActiveNode(null)}
-                  className="font-mono text-[10px] text-neon hover:underline uppercase cursor-pointer"
+        <div className="flex items-center justify-between gap-4 my-auto">
+          <div>
+            <div className="font-display text-4xl font-bold tracking-tight text-foreground tabular-nums">
+              {coffeeCount}
+            </div>
+            <p className="mt-1 text-xs text-muted-foreground leading-relaxed font-sans max-w-[200px]">
+              Cups of coffee sent by visitors. Refill my supply!
+            </p>
+          </div>
+
+          <div className="relative flex items-center justify-center w-24 h-24">
+            {/* Particles overlay */}
+            <AnimatePresence>
+              {particles.map((p) => (
+                <motion.span
+                  key={p.id}
+                  initial={{ opacity: 1, scale: 0.5, x: 0, y: 0 }}
+                  animate={{ opacity: 0, scale: 1.5, x: p.x, y: p.y }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 1, ease: "easeOut" }}
+                  onAnimationComplete={() => removeParticle(p.id)}
+                  className="absolute pointer-events-none text-xl z-20 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
                 >
-                  Back
-                </button>
-              </div>
+                  {p.emoji}
+                </motion.span>
+              ))}
+            </AnimatePresence>
 
-              {/* Scrollable details text */}
-              <div className="flex-1 overflow-y-auto pr-1 scroll-container my-1">
-                <h3 className="font-display text-lg font-bold tracking-tight text-foreground">
-                  {activeNode.title}
-                </h3>
-                <span
-                  className="font-mono text-[9px] uppercase tracking-widest mt-1 inline-block px-1.5 py-0.5 rounded border border-border/25 bg-surface/50"
-                  style={{ color: activeNode.color, borderColor: `${activeNode.color}25` }}
-                >
-                  {activeNode.short}
-                </span>
-                <p className="mt-2 text-xs text-muted-foreground leading-relaxed font-sans">
-                  {activeNode.desc}
-                </p>
-              </div>
+            <motion.button
+              onClick={handleAddCoffee}
+              whileTap={{ scale: 0.92 }}
+              data-cursor-text="REFILL"
+              className="h-16 w-16 rounded-2xl bg-gradient-to-br from-neon to-lime flex items-center justify-center text-background shadow-[0_0_24px_var(--color-neon)] hover:scale-105 transition cursor-pointer"
+            >
+              <Coffee className="h-8 w-8" />
+            </motion.button>
+          </div>
+        </div>
 
-              <button
-                onClick={() => setActiveNode(null)}
-                className="mt-2 w-full py-1.5 rounded-lg border border-border/20 bg-surface/30 hover:bg-surface-2/50 text-[10px] font-mono text-muted-foreground hover:text-foreground transition-all cursor-pointer flex-shrink-0"
-              >
-                Return to Node Grid
-              </button>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <div className="border-t border-border/10 pt-2 mt-auto flex justify-between items-center text-[9px] text-muted-foreground/45 font-mono flex-shrink-0 uppercase tracking-wider">
+          <span>Click cup to send coffee</span>
+          <div className="flex items-center gap-1 text-neon animate-pulse">
+            <Sparkles className="h-3 w-3" />
+            <span>Tactile effect</span>
+          </div>
+        </div>
       </SpotlightCard>
 
       {/* CARD 2: DEVELOPER STATUS CLOCK */}
