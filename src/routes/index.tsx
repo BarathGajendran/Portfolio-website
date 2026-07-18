@@ -200,8 +200,12 @@ function Index() {
             className="relative mx-auto"
           >
             <div className="relative h-64 w-64 rounded-full bg-gradient-to-br from-neon to-lime p-1 md:h-80 md:w-80 shadow-glow-sm">
-              <div className="grid h-full w-full place-items-center rounded-full bg-background">
-                <div className="font-display text-8xl font-bold neon-text">BG</div>
+              <div className="grid h-full w-full place-items-center rounded-full bg-background overflow-hidden">
+                <img
+                  src="/profile.jpg"
+                  alt="Barath Gajendran"
+                  className="h-full w-full object-cover rounded-full"
+                />
               </div>
             </div>
           </motion.div>
