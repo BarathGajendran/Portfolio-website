@@ -249,7 +249,7 @@ function Index() {
             <SpotlightCard className="p-8 h-fit md:h-[280px] flex flex-col justify-center">
               <div className="w-full">
                 <h3 className="font-display text-2xl font-semibold">Intro</h3>
-                <p className="mt-4 font-tech text-sm leading-relaxed text-muted-foreground/90 tracking-wide font-normal">
+                <p className="mt-4 font-tech text-sm leading-relaxed text-foreground/90 tracking-wide font-normal">
                   I'm Barath, a Computer Science student passionate about building intelligent,
                   end-to-end web solutions. I specialize in Full Stack Development and AI/ML —
                   turning ideas into real, deployable products. From RESTful APIs to BERT-powered
