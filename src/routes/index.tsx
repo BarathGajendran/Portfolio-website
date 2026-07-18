@@ -206,15 +206,6 @@ function Index() {
             </div>
           </motion.div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 font-mono text-xs text-muted-foreground"
-        >
-          <span className="block animate-bounce">scroll ↓</span>
-        </motion.div>
       </section>
 
       {/* DASHBOARD */}
@@ -249,7 +240,7 @@ function Index() {
             <SpotlightCard className="p-8 h-fit md:h-[280px] flex flex-col justify-center">
               <div className="w-full">
                 <h3 className="font-display text-2xl font-semibold">Intro</h3>
-                <p className="mt-3 text-muted-foreground leading-relaxed text-sm">
+                <p className="mt-3 text-foreground/90 leading-relaxed font-display text-lg font-medium italic">
                   I'm Barath, a Computer Science student passionate about building intelligent,
                   end-to-end web solutions. I specialize in Full Stack Development and AI/ML —
                   turning ideas into real, deployable products. From RESTful APIs to BERT-powered
