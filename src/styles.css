@@ -45,6 +45,7 @@
   --font-display: "Cormorant Garamond", Georgia, serif;
   --font-sans: "Inter Variable", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-tech: "Space Grotesk", sans-serif;
 }
 
 :root {
